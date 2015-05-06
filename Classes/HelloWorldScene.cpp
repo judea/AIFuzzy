@@ -1,5 +1,11 @@
 #include "HelloWorldScene.h"
 
+#include "fuzzy/FuzzyModule.h"
+#include "fuzzy/FuzzyVariable.h"
+#include "fuzzy/FuzzySet.h"
+#include "fuzzy/FuzzyOperators.h"
+
+
 USING_NS_CC;
 
 Scene* HelloWorld::createScene()
@@ -72,6 +78,42 @@ bool HelloWorld::init()
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
     
+    
+    // Fuzzy
+    FuzzyModule fm;
+    
+    // 距離
+    FuzzyVariable& DistToTarget = fm.CreateFLV("DistToTarget");
+    FzSet Target_Close = DistToTarget.AddLeftShoulderSet("Target_Close", 0, 25, 150);
+    FzSet Target_Medium = DistToTarget.AddTriangularSet("Target_Medium", 25, 50, 300);
+    FzSet Target_Far = DistToTarget.AddRightShoulderSet("Target_Far", 150, 300, 500);
+    
+    // 望ましさ
+    FuzzyVariable& Desirability = fm.CreateFLV("Desirability");
+    FzSet Undesirable = Desirability.AddLeftShoulderSet("Undesirable", 0, 30, 50);
+    FzSet Desirable = Desirability.AddTriangularSet("Desirable", 30, 50, 70);
+    FzSet VeryDesirable = Desirability.AddRightShoulderSet("VeryDesirable", 50, 70, 100);
+    
+    // 弾数
+    FuzzyVariable& AmmoStatus = fm.CreateFLV("AmmoStatus");
+    FzSet Ammo_Low = AmmoStatus.AddLeftShoulderSet("Ammo_Low", 0, 10, 10);
+    FzSet Ammo_Okay = AmmoStatus.AddTriangularSet("Ammo_Okay", 0, 10, 30);
+    FzSet Ammo_Loads = AmmoStatus.AddRightShoulderSet("Ammo_Loads", 10, 30, 40);
+    
+    fm.AddRule(FzAND(Target_Close, Ammo_Loads), Undesirable);
+    fm.AddRule(FzAND(Target_Close, Ammo_Okay), Undesirable);
+    fm.AddRule(FzAND(Target_Close, Ammo_Low), Undesirable);
+    fm.AddRule(FzAND(Target_Medium, Ammo_Loads), VeryDesirable);
+    fm.AddRule(FzAND(Target_Medium, Ammo_Okay), VeryDesirable);
+    fm.AddRule(FzAND(Target_Medium, Ammo_Low), Desirable);
+    fm.AddRule(FzAND(Target_Far, Ammo_Loads), Desirable);
+    fm.AddRule(FzAND(Target_Far, Ammo_Okay
+), Desirable);
+    fm.AddRule(FzAND(Target_Far, Ammo_Low), Desirable);
+    
+    //
+    log("Desirability : %lf", CalculateDesirability(fm, 200, 8));
+    
     return true;
 }
 
@@ -84,3 +126,12 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
     exit(0);
 #endif
 }
+
+double HelloWorld::CalculateDesirability(FuzzyModule& fm, double dist, double ammo)
+{
+    fm.Fuzzify("DistToTarget", dist);
+    fm.Fuzzify("AmmoStatus", ammo);
+    
+    return fm.DeFuzzify("Desirability", FuzzyModule::centroid);
+}
+

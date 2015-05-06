@@ -60,6 +60,13 @@
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
+		89F16B451AF9158200B17FBD /* FuzzyModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89F16B321AF9158200B17FBD /* FuzzyModule.cpp */; };
+		89F16B461AF9158200B17FBD /* FuzzyOperators.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89F16B341AF9158200B17FBD /* FuzzyOperators.cpp */; };
+		89F16B471AF9158200B17FBD /* FuzzySet_LeftShoulder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89F16B381AF9158200B17FBD /* FuzzySet_LeftShoulder.cpp */; };
+		89F16B481AF9158200B17FBD /* FuzzySet_RightShoulder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89F16B3A1AF9158200B17FBD /* FuzzySet_RightShoulder.cpp */; };
+		89F16B491AF9158200B17FBD /* FuzzySet_Singleton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89F16B3D1AF9158200B17FBD /* FuzzySet_Singleton.cpp */; };
+		89F16B4A1AF9158200B17FBD /* FuzzySet_Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89F16B3F1AF9158200B17FBD /* FuzzySet_Triangle.cpp */; };
+		89F16B4B1AF9158200B17FBD /* FuzzyVariable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89F16B421AF9158200B17FBD /* FuzzyVariable.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -152,6 +159,27 @@
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		89F16B2F1AF9157100B17FBD /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		89F16B311AF9158200B17FBD /* FuzzyHedges.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuzzyHedges.h; sourceTree = "<group>"; };
+		89F16B321AF9158200B17FBD /* FuzzyModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FuzzyModule.cpp; sourceTree = "<group>"; };
+		89F16B331AF9158200B17FBD /* FuzzyModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuzzyModule.h; sourceTree = "<group>"; };
+		89F16B341AF9158200B17FBD /* FuzzyOperators.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FuzzyOperators.cpp; sourceTree = "<group>"; };
+		89F16B351AF9158200B17FBD /* FuzzyOperators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuzzyOperators.h; sourceTree = "<group>"; };
+		89F16B361AF9158200B17FBD /* FuzzyRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuzzyRule.h; sourceTree = "<group>"; };
+		89F16B371AF9158200B17FBD /* FuzzySet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuzzySet.h; sourceTree = "<group>"; };
+		89F16B381AF9158200B17FBD /* FuzzySet_LeftShoulder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FuzzySet_LeftShoulder.cpp; sourceTree = "<group>"; };
+		89F16B391AF9158200B17FBD /* FuzzySet_LeftShoulder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuzzySet_LeftShoulder.h; sourceTree = "<group>"; };
+		89F16B3A1AF9158200B17FBD /* FuzzySet_RightShoulder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FuzzySet_RightShoulder.cpp; sourceTree = "<group>"; };
+		89F16B3B1AF9158200B17FBD /* FuzzySet_RightShoulder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuzzySet_RightShoulder.h; sourceTree = "<group>"; };
+		89F16B3C1AF9158200B17FBD /* FuzzySet_Shoulder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuzzySet_Shoulder.h; sourceTree = "<group>"; };
+		89F16B3D1AF9158200B17FBD /* FuzzySet_Singleton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FuzzySet_Singleton.cpp; sourceTree = "<group>"; };
+		89F16B3E1AF9158200B17FBD /* FuzzySet_Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuzzySet_Singleton.h; sourceTree = "<group>"; };
+		89F16B3F1AF9158200B17FBD /* FuzzySet_Triangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FuzzySet_Triangle.cpp; sourceTree = "<group>"; };
+		89F16B401AF9158200B17FBD /* FuzzySet_Triangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuzzySet_Triangle.h; sourceTree = "<group>"; };
+		89F16B411AF9158200B17FBD /* FuzzyTerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuzzyTerm.h; sourceTree = "<group>"; };
+		89F16B421AF9158200B17FBD /* FuzzyVariable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FuzzyVariable.cpp; sourceTree = "<group>"; };
+		89F16B431AF9158200B17FBD /* FuzzyVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuzzyVariable.h; sourceTree = "<group>"; };
+		89F16B441AF9158200B17FBD /* FzSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FzSet.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -289,6 +317,8 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				89F16B301AF9158200B17FBD /* fuzzy */,
+				89F16B2E1AF9157100B17FBD /* misc */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
@@ -344,6 +374,41 @@
 			name = Icons;
 			path = ios;
 			sourceTree = SOURCE_ROOT;
+		};
+		89F16B2E1AF9157100B17FBD /* misc */ = {
+			isa = PBXGroup;
+			children = (
+				89F16B2F1AF9157100B17FBD /* utils.h */,
+			);
+			path = misc;
+			sourceTree = "<group>";
+		};
+		89F16B301AF9158200B17FBD /* fuzzy */ = {
+			isa = PBXGroup;
+			children = (
+				89F16B311AF9158200B17FBD /* FuzzyHedges.h */,
+				89F16B321AF9158200B17FBD /* FuzzyModule.cpp */,
+				89F16B331AF9158200B17FBD /* FuzzyModule.h */,
+				89F16B341AF9158200B17FBD /* FuzzyOperators.cpp */,
+				89F16B351AF9158200B17FBD /* FuzzyOperators.h */,
+				89F16B361AF9158200B17FBD /* FuzzyRule.h */,
+				89F16B371AF9158200B17FBD /* FuzzySet.h */,
+				89F16B381AF9158200B17FBD /* FuzzySet_LeftShoulder.cpp */,
+				89F16B391AF9158200B17FBD /* FuzzySet_LeftShoulder.h */,
+				89F16B3A1AF9158200B17FBD /* FuzzySet_RightShoulder.cpp */,
+				89F16B3B1AF9158200B17FBD /* FuzzySet_RightShoulder.h */,
+				89F16B3C1AF9158200B17FBD /* FuzzySet_Shoulder.h */,
+				89F16B3D1AF9158200B17FBD /* FuzzySet_Singleton.cpp */,
+				89F16B3E1AF9158200B17FBD /* FuzzySet_Singleton.h */,
+				89F16B3F1AF9158200B17FBD /* FuzzySet_Triangle.cpp */,
+				89F16B401AF9158200B17FBD /* FuzzySet_Triangle.h */,
+				89F16B411AF9158200B17FBD /* FuzzyTerm.h */,
+				89F16B421AF9158200B17FBD /* FuzzyVariable.cpp */,
+				89F16B431AF9158200B17FBD /* FuzzyVariable.h */,
+				89F16B441AF9158200B17FBD /* FzSet.h */,
+			);
+			path = fuzzy;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -491,10 +556,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89F16B4B1AF9158200B17FBD /* FuzzyVariable.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				89F16B481AF9158200B17FBD /* FuzzySet_RightShoulder.cpp in Sources */,
+				89F16B491AF9158200B17FBD /* FuzzySet_Singleton.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				89F16B4A1AF9158200B17FBD /* FuzzySet_Triangle.cpp in Sources */,
+				89F16B451AF9158200B17FBD /* FuzzyModule.cpp in Sources */,
+				89F16B461AF9158200B17FBD /* FuzzyOperators.cpp in Sources */,
+				89F16B471AF9158200B17FBD /* FuzzySet_LeftShoulder.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

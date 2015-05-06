@@ -2,6 +2,7 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+#include "fuzzy/FuzzyModule.h"
 
 class HelloWorld : public cocos2d::Layer
 {
@@ -17,6 +18,9 @@ public:
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
+    
+private:
+    double CalculateDesirability(FuzzyModule& fm, double dist, double ammo);
 };
 
 #endif // __HELLOWORLD_SCENE_H__
