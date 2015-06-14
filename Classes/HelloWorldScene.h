@@ -20,6 +20,14 @@ public:
     CREATE_FUNC(HelloWorld);
     
 private:
+    // Fuzzy
+    FuzzyModule fm;
+    
+    // 経過時間
+    float elapsedSec;
+
+    void update(float delta);
+    
     double CalculateDesirability(FuzzyModule& fm, double dist, double ammo);
 };
 

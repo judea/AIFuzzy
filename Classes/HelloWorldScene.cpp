@@ -8,6 +8,8 @@
 
 USING_NS_CC;
 
+static double LIMIT_SEC = 60;
+
 Scene* HelloWorld::createScene()
 {
     // 'scene' is an autorelease object
@@ -79,44 +81,54 @@ bool HelloWorld::init()
     this->addChild(sprite, 0);
     
     
-    // Fuzzy
-    FuzzyModule fm;
+    // 経過時間
+    FuzzyVariable& ElapsedTime = fm.CreateFLV("ElapsedTime");
+    FzSet Time_Early = ElapsedTime.AddLeftShoulderSet("Time_Early", 0, 15, 30);
+    FzSet Time_Medium = ElapsedTime.AddTriangularSet("Time_Medium", 15, 30, 50);
+    FzSet Time_Late = ElapsedTime.AddRightShoulderSet("Time_Late", 30, 50, LIMIT_SEC);
     
-    // 距離
-    FuzzyVariable& DistToTarget = fm.CreateFLV("DistToTarget");
-    FzSet Target_Close = DistToTarget.AddLeftShoulderSet("Target_Close", 0, 25, 150);
-    FzSet Target_Medium = DistToTarget.AddTriangularSet("Target_Medium", 25, 50, 300);
-    FzSet Target_Far = DistToTarget.AddRightShoulderSet("Target_Far", 150, 300, 500);
+    // 関心度
+    FuzzyVariable& Interest = fm.CreateFLV("Interest");
+    FzSet Interest_Low = Interest.AddLeftShoulderSet("Interest_Low", 0, 10, 40);
+    FzSet Interest_Medium = Interest.AddTriangularSet("Interest_Medium", 30, 50, 70);
+    FzSet Interest_High = Interest.AddRightShoulderSet("Interest_High", 60, 80, 100);
     
-    // 望ましさ
+    // 入札意欲
     FuzzyVariable& Desirability = fm.CreateFLV("Desirability");
     FzSet Undesirable = Desirability.AddLeftShoulderSet("Undesirable", 0, 30, 50);
     FzSet Desirable = Desirability.AddTriangularSet("Desirable", 30, 50, 70);
     FzSet VeryDesirable = Desirability.AddRightShoulderSet("VeryDesirable", 50, 70, 100);
     
-    // 弾数
-    FuzzyVariable& AmmoStatus = fm.CreateFLV("AmmoStatus");
-    FzSet Ammo_Low = AmmoStatus.AddLeftShoulderSet("Ammo_Low", 0, 10, 10);
-    FzSet Ammo_Okay = AmmoStatus.AddTriangularSet("Ammo_Okay", 0, 10, 30);
-    FzSet Ammo_Loads = AmmoStatus.AddRightShoulderSet("Ammo_Loads", 10, 30, 40);
+
+    // ファジールール
+    fm.AddRule(FzAND(Time_Early, Interest_Low), Undesirable);
+    fm.AddRule(FzAND(Time_Early, Interest_Medium), VeryDesirable);
+    fm.AddRule(FzAND(Time_Early, Interest_High), VeryDesirable);
+    fm.AddRule(FzAND(Time_Medium, Interest_Low), Undesirable);
+    fm.AddRule(FzAND(Time_Medium, Interest_Medium), Desirable);
+    fm.AddRule(FzAND(Time_Medium, Interest_High), Desirable);
+    fm.AddRule(FzAND(Time_Late, Interest_Low), Undesirable);
+    fm.AddRule(FzAND(Time_Late, Interest_Medium
+), Undesirable);
+    fm.AddRule(FzAND(Time_Late, Interest_High), VeryDesirable);
     
-    fm.AddRule(FzAND(Target_Close, Ammo_Loads), Undesirable);
-    fm.AddRule(FzAND(Target_Close, Ammo_Okay), Undesirable);
-    fm.AddRule(FzAND(Target_Close, Ammo_Low), Undesirable);
-    fm.AddRule(FzAND(Target_Medium, Ammo_Loads), VeryDesirable);
-    fm.AddRule(FzAND(Target_Medium, Ammo_Okay), VeryDesirable);
-    fm.AddRule(FzAND(Target_Medium, Ammo_Low), Desirable);
-    fm.AddRule(FzAND(Target_Far, Ammo_Loads), Desirable);
-    fm.AddRule(FzAND(Target_Far, Ammo_Okay
-), Desirable);
-    fm.AddRule(FzAND(Target_Far, Ammo_Low), Desirable);
     
-    //
-    log("Desirability : %lf", CalculateDesirability(fm, 200, 8));
+    this->scheduleUpdate();
     
     return true;
 }
 
+void HelloWorld::update(float delta){
+    
+    elapsedSec += delta;
+    
+    double interest = 40;
+    
+    if ((double)elapsedSec <= LIMIT_SEC)
+    {
+        log("Desirability(%lf) : %lf", (double)elapsedSec, CalculateDesirability(fm, (double)elapsedSec, interest));
+    }
+}
 
 void HelloWorld::menuCloseCallback(Ref* pSender)
 {
@@ -127,10 +139,10 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 #endif
 }
 
-double HelloWorld::CalculateDesirability(FuzzyModule& fm, double dist, double ammo)
+double HelloWorld::CalculateDesirability(FuzzyModule& fm, double sec, double interest)
 {
-    fm.Fuzzify("DistToTarget", dist);
-    fm.Fuzzify("AmmoStatus", ammo);
+    fm.Fuzzify("ElapsedTime", sec);
+    fm.Fuzzify("Interest", interest);
     
     return fm.DeFuzzify("Desirability", FuzzyModule::centroid);
 }
